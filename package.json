@@ -1,5 +1,5 @@
 {
-  "name": "node-ios-browser",
+  "name": "ios-browser",
   "version": "2.5.0",
   "description": "iOS Command Line Browser",
   "main": "index.js",
