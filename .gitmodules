@@ -1,0 +1,6 @@
+[submodule "cordova-ios"]
+	path = cordova-ios
+	url = git://github.com/apache/cordova-ios.git
+[submodule "ios-sim"]
+	path = ios-sim
+	url = git://github.com/phonegap/ios-sim.git

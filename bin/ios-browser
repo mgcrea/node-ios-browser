@@ -1,0 +1,6 @@
+#!/bin/bash
+echo `basename $(dirname $(dirname $0))`
+echo `dirname $0`
+
+SCRIPT_DIRNAME=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+"${SCRIPT_DIRNAME}/../ios-sim/build/Release/ios-sim" launch "${SCRIPT_DIRNAME}/../browser/build/Browser.app" --args $1

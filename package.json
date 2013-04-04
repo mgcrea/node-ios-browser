@@ -1,0 +1,24 @@
+{
+  "name": "node-ios-browser",
+  "version": "2.5.0",
+  "description": "iOS Command Line Browser",
+  "main": "index.js",
+  "scripts": {
+    "preinstall" : "make setup && make",
+    "test": "make test"
+  },
+  "bin": {
+    "ios-browser" : "./bin/ios-browser"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgcrea/ios-cli-browser.git"
+  },
+  "keywords": [
+    "ios",
+    "cli",
+    "browser"
+  ],
+  "author": "Olivier Louvignes (olivier@mg-crea.com)",
+  "license": "MIT"
+}
