@@ -4,14 +4,6 @@ CHECK=\033[32m✔\033[39m
 HR=\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#
 
 #
-# SETUP IOS-BROWSER
-#
-
-setup:
-	rm -rf cordova-ios && git clone git://github.com/apache/cordova-ios.git && cd cordova-ios && git checkout tags/2.5.0 && cd ..
-	rm -rf ios-sim && git clone git://github.com/phonegap/ios-sim.git && cd ios-sim && git checkout tags/1.6 && rake build && cd ..
-
-#
 # BUILD IOS-BROWSER
 #
 
@@ -24,6 +16,14 @@ build:
 	cp -rf src/* browser/Browser
 	browser/cordova/build > /dev/null
 	@echo "Successfully built at ${DATE}...       ${CHECK} Done"
+
+#
+# SETUP IOS-BROWSER
+#
+
+setup:
+	rm -rf cordova-ios && git clone git://github.com/apache/cordova-ios.git && cd cordova-ios && git checkout tags/2.5.0 && cd ..
+	rm -rf ios-sim && git clone git://github.com/phonegap/ios-sim.git && cd ios-sim && git checkout tags/1.6 && rake build && cd ..
 
 #
 # RUN DEMO TESTS IN IOS-BROWSER
