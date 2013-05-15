@@ -19,6 +19,10 @@
 
 //
 //  AppDelegate.m
+//  __TESTING__
+//
+//  Created by ___FULLUSERNAME___ on ___DATE___.
+//  Copyright ___ORGANIZATIONNAME___ ___YEAR___. All rights reserved.
 //
 
 #import "AppDelegate.h"
@@ -41,7 +45,11 @@
 
     int cacheSizeMemory = 8 * 1024 * 1024; // 8MB
     int cacheSizeDisk = 32 * 1024 * 1024; // 32MB
-    NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
+#if __has_feature(objc_arc)
+        NSURLCache* sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"];
+#else
+        NSURLCache* sharedCache = [[[NSURLCache alloc] initWithMemoryCapacity:cacheSizeMemory diskCapacity:cacheSizeDisk diskPath:@"nsurlcache"] autorelease];
+#endif
     [NSURLCache setSharedURLCache:sharedCache];
 
     self = [super init];
@@ -57,10 +65,19 @@
 {
     CGRect screenBounds = [[UIScreen mainScreen] bounds];
 
-    self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
+#if __has_feature(objc_arc)
+        self.window = [[UIWindow alloc] initWithFrame:screenBounds];
+#else
+        self.window = [[[UIWindow alloc] initWithFrame:screenBounds] autorelease];
+#endif
     self.window.autoresizesSubviews = YES;
 
-    self.viewController = [[[MainViewController alloc] init] autorelease];
+#if __has_feature(objc_arc)
+        self.viewController = [[MainViewController alloc] init];
+#else
+        self.viewController = [[[MainViewController alloc] init] autorelease];
+#endif
+    self.viewController.useSplashScreen = YES;
 
     NSUserDefaults *standardDefaults = [NSUserDefaults standardUserDefaults];
     NSString *startPage = [standardDefaults valueForKey:@"argv[1]"];
@@ -78,7 +95,7 @@
 }
 
 // this happens while we are running ( in the background, or from within our own app )
-// only valid if Beelink-Info.plist specifies a protocol to handle
+// only valid if __TESTING__-Info.plist specifies a protocol to handle
 - (BOOL)application:(UIApplication*)application handleOpenURL:(NSURL*)url
 {
     if (!url) {
